@@ -12,7 +12,7 @@ dependencies:
 
 test:
   override:
-    - "cont=$(docker run -d sillelien/jess:${CIRCLE_BRANCH}); sleep 5 ; docker logs $cont; docker export $cont | docker import - sillelien/jess"
+    - "cont=$(docker run -d sillelien/jess:${CIRCLE_BRANCH}); sleep 5 ; docker logs $cont; docker export $cont | docker import - sillelien/jess:${CIRCLE_BRANCH}"
 
 
 deployment:
