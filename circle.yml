@@ -8,11 +8,11 @@ dependencies:
 
   override:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS 
-      - docker build -t sillelien/jess .
+      - docker build -t sillelien/jess:${CIRCLE_BRANCH} .
 
 test:
   override:
-    - "cont=$(docker run -d sillelien/jess); sleep 5 ; docker logs $cont; docker export $cont | docker import - sillelien/jess"
+    - "cont=$(docker run -d sillelien/jess:${CIRCLE_BRANCH}); sleep 5 ; docker logs $cont; docker export $cont | docker import - sillelien/jess"
 
 
 deployment:
