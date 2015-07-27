@@ -1,0 +1,23 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - "~/docker"
+
+  override:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS 
+      - docker build -t sillelien/jess .
+
+test:
+  override:
+    - "cont=$(docker run -d sillelien/jess); sleep 5 ; docker logs $cont; docker export $cont | docker import - sillelien/jess"
+
+
+deployment:
+  all:
+    branch: *
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS 
+      - docker push sillelien/jess:${CIRCLE_BRANCH}
