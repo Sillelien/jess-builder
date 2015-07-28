@@ -1,0 +1,4 @@
+FROM debian:jessie
+RUN rm -rf /lib/systemd/  /usr/share/doc /usr/share/man
+RUN rm -rf  /var/cache/debconf /usr/sbin/* /bin/systemd/* 
+RUN rm -rf  /usr/share/bash-completion  /lib/udev
