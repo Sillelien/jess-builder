@@ -8,11 +8,13 @@ dependencies:
 
   override:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS 
-      - docker build -t sillelien/jess:${CIRCLE_BRANCH} .
+      - docker build -f Dockerfile-jess -t sillelien/jess:${CIRCLE_BRANCH} .
+      - docker build -f Dockerfile-jessy -t sillelien/jessy:${CIRCLE_BRANCH} .
 
 test:
   override:
     - "cont=$(docker run -d sillelien/jess:${CIRCLE_BRANCH}); sleep 5 ; docker logs $cont; docker export $cont | docker import - sillelien/jess:${CIRCLE_BRANCH}"
+    - "cont=$(docker run -d sillelien/jessy:${CIRCLE_BRANCH}); sleep 5 ; docker logs $cont; docker export $cont | docker import - sillelien/jessy:${CIRCLE_BRANCH}"
 
 
 deployment:
@@ -21,3 +23,4 @@ deployment:
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS 
       - docker push sillelien/jess:${CIRCLE_BRANCH}
+      - docker push sillelien/jessy:${CIRCLE_BRANCH}
