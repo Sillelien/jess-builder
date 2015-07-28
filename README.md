@@ -6,8 +6,8 @@ Stripped down jessie for Docker creator
 
 [![Image Layers](https://badge.imagelayers.io/sillelien/jess.svg)](https://imagelayers.io/?images=sillelien/jess:latest 'Get your own badge on imagelayers.io') 
 
-[![GitHub License](https://img.shields.io/github/license/sillelien/jess.svg)](https://raw.githubusercontent.com/neilellis/jess/master/LICENSE)
+[![GitHub License](https://img.shields.io/github/license/sillelien/jess-builder.svg)](https://raw.githubusercontent.com/neilellis/jess-builder/master/LICENSE)
 
-[![GitHub Issues](https://img.shields.io/github/issues/sillelien/jess.svg)](https://github.com/sillelien/jess/issues)
+[![GitHub Issues](https://img.shields.io/github/issues/sillelien/jess-builder.svg)](https://github.com/sillelien/jess-builder/issues)
     
-[![GitHub Release](https://img.shields.io/github/release/sillelien/jess.svg)](https://github.com/sillelien/jess)
+[![GitHub Release](https://img.shields.io/github/release/sillelien/jess-builder.svg)](https://github.com/sillelien/jess-builder)
