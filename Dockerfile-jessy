@@ -39,12 +39,3 @@ RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libncurses5 libncu
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libss2
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libcap2-bin
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libgpg-error0
-RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes   gnupg libreadline6 readline-common gpgv libapt-pkg4.12 libusb-0.1-4 libtinfo5 debian-archive-keyring
-
-
-#RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes   base-files coreutils dash debconf debconf-i18n debianutils findutils libacl1 libattr1 libaudit-common libaudit1  libbz2-1.0 libc-bin libc6 libcap2 libdb5.3 libdebconfclient0 liblzma5 libpam-modules libpam-modules-bin libpam-runtime libpam0g libpcre3  libreadline6 libselinux1 libsemanage-common libsemanage1 libsepol1 mawk multiarch-support  zlib1g
-
-#RUN rm -rf /usr/bin/* /var/cache/* /usr/sbin/* /bin/systemd/*
-RUN rm -rf  /usr/share/bash-completion /lib/udev  /usr/share/doc
-
-RUN du -sh / || :
