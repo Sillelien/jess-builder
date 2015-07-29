@@ -3,5 +3,5 @@ RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  apt gnupg libreadl
 
 RUN rm -rf /lib/systemd/  /usr/share/ /var/lib/dpkg
 RUN rm -rf /usr/bin/* /var/cache/* /usr/sbin/* /bin/systemd/* 
-RUN rm -rf  /usr/share/bash-completion /bin/* /sbin/* /lib/udev
+RUN rm -rf /bin/* /sbin/* /lib/udev
 
