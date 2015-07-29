@@ -44,7 +44,7 @@ RUN apt-get install -y busybox && apt-get autoremove -y && busybox --install /us
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes coreutils  libsemanage-common libsemanage1
 RUN ls -la /bin
 
-#RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  base-files  dash debconf debconf-i18n debianutils findutils libacl1 libattr1 libaudit-common libaudit1  libbz2-1.0 libc-bin libc6 libcap2 libdb5.3 libdebconfclient0 liblzma5 libpam-modules libpam-modules-bin libpam-runtime libpam0g libpcre3  libreadline6 libselinux1 libsepol1 mawk multiarch-support  zlib1g tar
+#RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  base-files  dash debconf debconf-i18n debianutils findutils libacl1 libattr1 libaudit-common libaudit1  libbz2-1.0 libc-bin libc6 libcap2 libdb5.3 libdebconfclient0 liblzma5 libpam-modules libpam-modules-bin libpam-runtime libpam0g libpcre3  libreadline6 libselinux1 libsepol1 mawk multiarch-support zlib1g tar
 
 RUN rm -rf /var/cache/* /tmp/*
 RUN rm -rf  /usr/share/bash-completion /lib/udev  /usr/share/doc  /usr/share/locale /usr/share/man  /usr/share/perl  /usr/share/perl5
