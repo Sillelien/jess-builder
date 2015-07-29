@@ -20,7 +20,7 @@ Debian Jessie: [![Image Layers](https://badge.imagelayers.io/library/debian:jess
 
 ## Jess
 
-Jess is a bit smaller and has had more removed. Don't use this for anything that needs packages adding.
+Jess is a lot smaller and has had more removed. Don't use this for anything that needs packages adding, in fact don't really use this as a base image unless you are adding your own binaries to it because so much has been stripped out.
 
 
 Always use a tagged version such as:
