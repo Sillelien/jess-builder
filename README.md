@@ -2,11 +2,13 @@
 Stripped down jessie for Docker creator
 
 
-[![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jess.svg)](https://registry.hub.docker.com/u/sillelien/jess)
-[![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jessy.svg)](https://registry.hub.docker.com/u/sillelien/jessy)
+Jess: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jess.svg)](https://registry.hub.docker.com/u/sillelien/jess)
 
-[![Image Layers](https://badge.imagelayers.io/sillelien/jess.svg)](https://imagelayers.io/?images=sillelien/jess:latest 'Get your own badge on imagelayers.io') 
-[![Image Layers](https://badge.imagelayers.io/sillelien/jessy.svg)](https://imagelayers.io/?images=sillelien/jessy:latest 'Get your own badge on imagelayers.io') 
+Jessy: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jessy.svg)](https://registry.hub.docker.com/u/sillelien/jessy)
+
+Jess: [![Image Layers](https://badge.imagelayers.io/sillelien/jess.svg)](https://imagelayers.io/?images=sillelien/jess:latest 'Get your own badge on imagelayers.io') 
+
+Jessy: [![Image Layers](https://badge.imagelayers.io/sillelien/jessy.svg)](https://imagelayers.io/?images=sillelien/jessy:latest 'Get your own badge on imagelayers.io') 
 
 [![GitHub License](https://img.shields.io/github/license/sillelien/jess-builder.svg)](https://raw.githubusercontent.com/neilellis/jess-builder/master/LICENSE)
 
