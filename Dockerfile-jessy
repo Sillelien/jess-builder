@@ -15,7 +15,6 @@ RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  netbase
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  diffutils
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  ncurses-base ncurses-bin
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  startpar
-#RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  tzdata
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  sed
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  lsb-base
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  login

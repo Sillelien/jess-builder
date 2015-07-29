@@ -2,7 +2,7 @@ FROM sillelien/jessy:master
 
 RUN apt list --installed
 
-RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  gnupg libreadline6 readline-common gpgv  libusb-0.1-4 libtinfo5 debian-archive-keyring libdebconfclient0 liblocale-gettext-perl libapt-pkg4.12 dash findutils debianutils coreutils gnupg gpgv acl insserv || :
+RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  gnupg libreadline6 readline-common gpgv  libusb-0.1-4 libtinfo5 debian-archive-keyring libdebconfclient0 liblocale-gettext-perl libapt-pkg4.12 dash tzdata findutils debianutils coreutils gnupg gpgv acl insserv || :
 
 
 
