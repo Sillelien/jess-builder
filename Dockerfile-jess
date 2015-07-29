@@ -3,10 +3,7 @@ FROM sillelien/jessy:master
 RUN apt list --installed
 
 RUN sh -c echo hello
-# Delocalize
-COPY delocale.sh /tmp/delocale.sh
-RUN chmod 755 /tmp/delocale.sh
-RUN /tmp/delocale.sh
+
 
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  gnupg libreadline6 readline-common gpgv  libusb-0.1-4 libtinfo5 debian-archive-keyring libdebconfclient0 liblocale-gettext-perl libapt-pkg4.12 dash tzdata findutils debianutils coreutils gnupg gpgv acl insserv || :
 

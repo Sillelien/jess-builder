@@ -1,9 +1,13 @@
 FROM debian:jessie
 
 
-
 # Systematically remove packages
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
+
+COPY locale.nopurge /etc/locale.nopurge
+RUN apt-get install -y localepurge && dpkg-reconfigure localepurge && localepurge
+RUN apt-get install -y deborphan
+
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  systemd systemd-sysv sysv-rc sysvinit-utils
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  bash
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  bsdutils
@@ -22,7 +26,7 @@ RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  grep
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  dmsetup
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  base-passwd
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  util-linux
-RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libtext-charwidth-perl libtext-iconv-perl libtext-wrapi18n-perl
+RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libtext-charwidth-perl libtext-iconv-perl libtext-wrapi18n-perl libuuid-perl
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libcryptsetup4
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libdevmapper1.02.1
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libsystemd0
@@ -42,6 +46,8 @@ RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libncurses5 libncu
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libss2
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libcap2-bin
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libgpg-error0
+RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  insserv
+
 
 # Add in Busybox to replace the main utils, more on that later
 RUN apt-get install -y busybox && apt-get autoremove -y
@@ -50,16 +56,25 @@ RUN apt-get install -y busybox && apt-get autoremove -y
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libsemanage-common libsemanage1
 
 # Remove unncessary config/static files
-RUN rm -rf  /usr/share/bash-completion /lib/udev /usr/share/doc /usr/share/man
+RUN rm -rf  /usr/share/bash-completion /lib/udev /usr/share/doc  /usr/share/doc-base/
+RUN dpkg --purge man-db manpages
+RUn rm -rf /usr/share/man
 
 #Now properly install BusyBox and remove all binaries it replaces
 COPY busy-install.sh /tmp/busy-install.sh
 RUN chmod 755 /tmp/busy-install.sh
 RUN /tmp/busy-install.sh
 
+#RUN apt-get remove -y tzdata
+
 # Remove Cache and build files
+RUN apt-get purge -y $(deborphan)
+RUN apt-get remove -y deborphan localepurge
 RUN apt-get clean
 RUN rm -rf /tmp/*
+RUN find /var/cache/apt/ -type f -exec rm -v {} \;
+RUN find /var/lib/apt/lists -type f -exec rm -v {} \;
+
 
 # Scores on the doors please
 RUN du -sh / || :
