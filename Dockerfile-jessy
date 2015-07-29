@@ -48,4 +48,4 @@ RUN ls -la /bin
 
 RUN rm -rf /var/cache/* /tmp/*
 RUN rm -rf  /usr/share/bash-completion /lib/udev  /usr/share/doc  /usr/share/locale /usr/share/man  /usr/share/perl  /usr/share/perl5
-RUN du -sh / || :
+#RUN du -sh / || :
