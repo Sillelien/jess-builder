@@ -49,7 +49,7 @@ RUN apt-get install -y busybox && apt-get autoremove -y
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libsemanage-common libsemanage1
 
 # Remove unncessary config/static files
-RUN rm -rf  /usr/share/bash-completion /lib/udev  /usr/share/doc  /usr/share/locale /usr/share/man
+RUN rm -rf  /usr/share/bash-completion /lib/udev  /usr/share/doc /usr/share/man
 
 #Now properly install BusyBox and remove all binaries it replaces
 COPY busy-install.sh /tmp/busy-install.sh
