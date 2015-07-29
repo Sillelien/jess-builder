@@ -3,10 +3,6 @@ cat > /etc/default/locale <<EOF
 LANG=en_GB
 LANGUAGE="en_GB:en
 EOF
-locale -a -v
-cd /usr/lib/locale
-ls
-rm -fr *
 cd /usr/share/locale
 mkdir .locales
 mv uk en_GB de fr es .locales

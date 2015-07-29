@@ -3,7 +3,7 @@ FROM debian:jessie
 # Delocalize
 COPY delocale.sh /tmp/delocale.sh
 RUN chmod 755 /tmp/delocale.sh
-RUN /tmp/delocale.sh
+#RUN /tmp/delocale.sh
 
 # Systematically remove packages
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
