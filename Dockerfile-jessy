@@ -1,5 +1,5 @@
 FROM debian:jessie
-
+RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  systemd systemd-sysv sysv-rc sysvinit-utils
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  bash
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  bsdutils
