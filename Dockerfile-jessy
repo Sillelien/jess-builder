@@ -1,4 +1,6 @@
 FROM debian:jessie
+
+# Systematically remove packages
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  systemd systemd-sysv sysv-rc sysvinit-utils
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  bash
@@ -40,18 +42,24 @@ RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libss2
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libcap2-bin
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libgpg-error0
 RUN apt-get clean
-RUN apt-get install -y busybox && apt-get autoremove -y && busybox --install /usr/bin
+
+# Add in Busybox to replace the main utils, more on that later
+RUN apt-get install -y busybox && apt-get autoremove -y
+
+# SELinux config
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libsemanage-common libsemanage1
-RUN ls  /bin
 
-
-RUN rm -rf /var/cache/* /tmp/*
+# Remove unncessary config/static files
 RUN rm -rf  /usr/share/bash-completion /lib/udev  /usr/share/doc  /usr/share/locale /usr/share/man
+
+#Now properly install BusyBox and remove all binaries it replaces
+COPY busy-install.sh /tmp/busy-install.sh
+RUN chmod 755 /tmp/busy-install.sh
+RUN /tmp/busy-install.sh
+
+# Remove Cache and build files
+RUN rm -rf /var/cache/* /tmp/*
+
+# Scores on the doors please
 RUN du -sh / || :
-
-COPY busy-clean.sh /tmp/busy-clean.sh
-RUN chmod 755 /tmp/busy-clean.sh
-RUN /tmp/busy-clean.sh
-
-#RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  base-files  dash debconf debconf-i18n debianutils findutils libacl1 libattr1 libaudit-common libaudit1  libbz2-1.0 libc-bin libc6 libcap2 libdb5.3 libdebconfclient0 liblzma5 libpam-modules libpam-modules-bin libpam-runtime libpam0g libpcre3  libreadline6 libselinux1 libsepol1 mawk multiarch-support zlib1g tar
 
