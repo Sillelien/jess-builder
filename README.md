@@ -44,7 +44,7 @@ Experimental do not touch.
 
 [![Circle CI](https://circleci.com/gh/Sillelien/jess-builder/tree/master.svg?style=svg)](https://circleci.com/gh/Sillelien/jess-builder/tree/master)
 
-[![GitHub License](https://img.shields.io/github/license/sillelien/jess-builder.svg)](https://raw.githubusercontent.com/neilellis/jess-builder/master/LICENSE)
+[![GitHub License](https://img.shields.io/github/license/sillelien/jess-builder.svg)](https://raw.githubusercontent.com/sillelien/jess-builder/master/LICENSE)
 
 [![GitHub Issues](https://img.shields.io/github/issues/sillelien/jess-builder.svg)](https://github.com/sillelien/jess-builder/issues)
     

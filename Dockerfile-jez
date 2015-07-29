@@ -13,6 +13,8 @@ RUN cd /usr/lib/x86_64-linux-gnu && rm -rf gconv perl
 RUN du -sh /usr/lib/x86_64-linux-gnu/*
 RUN du -sh  /lib/x86_64-linux-gnu/*
 
+RUN sh -c echo hello
+
 # Scores on the doors
 RUN du -sh / || :
 
