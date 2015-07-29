@@ -9,6 +9,7 @@ Jessy: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jessy.s
 
 Jessy: [![Image Layers](https://badge.imagelayers.io/sillelien/jessy.svg)](https://imagelayers.io/?images=sillelien/jessy:master 'Get your own badge on imagelayers.io') 
 
+Debian Jessie: [![Image Layers](https://badge.imagelayers.io/library/debian:jessie.svg)](https://imagelayers.io/?images=library/debian:jessie 'Get your own badge on imagelayers.io') 
 
 
 ## Jess
@@ -18,6 +19,8 @@ Jess is a bit smaller and has had more removed. Don't use this for anything that
 Jess: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jess.svg)](https://registry.hub.docker.com/u/sillelien/jess)
 
 Jess: [![Image Layers](https://badge.imagelayers.io/sillelien/jess.svg)](https://imagelayers.io/?images=sillelien/jess:master 'Get your own badge on imagelayers.io') 
+
+Debian Jessie: [![Image Layers](https://badge.imagelayers.io/library/debian:jessie.svg)](https://imagelayers.io/?images=library/debian:jessie 'Get your own badge on imagelayers.io') 
 
 ## Jez
 
