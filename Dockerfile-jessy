@@ -41,7 +41,6 @@ RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libncurses5 libncu
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libss2
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libcap2-bin
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libgpg-error0
-RUN apt-get clean
 
 # Add in Busybox to replace the main utils, more on that later
 RUN apt-get install -y busybox && apt-get autoremove -y
@@ -58,6 +57,7 @@ RUN chmod 755 /tmp/busy-install.sh
 RUN /tmp/busy-install.sh
 
 # Remove Cache and build files
+RUN apt-get clean
 RUN rm -rf /var/cache/* /tmp/*
 
 # Scores on the doors please
