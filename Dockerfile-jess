@@ -2,6 +2,6 @@ FROM sillelien/jessy:master
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  apt gnupg libreadline6 readline-common gpgv libapt-pkg4.12 libusb-0.1-4 libtinfo5 debian-archive-keyring
 
 RUN rm -rf  /var/lib/dpkg
-RUN rm -rf /usr/bin/* /var/cache/* /usr/sbin/* /bin/systemd/* 
-RUN rm -rf  /usr/share/bash-completion /bin/* /sbin/* /lib/udev
+RUN rm -rf  /var/cache/* /usr/sbin/* /bin/systemd/*
+RUN rm -rf  /usr/share/bash-completion /sbin/* /lib/udev
 
