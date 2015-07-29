@@ -1,5 +1,10 @@
 FROM debian:jessie
 
+# Delocalize
+COPY delocale.sh /tmp/delocale.sh
+RUN chmod 755 /tmp/delocale.sh
+RUN /tmp/delocale.sh
+
 # Systematically remove packages
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  systemd systemd-sysv sysv-rc sysvinit-utils
@@ -10,7 +15,7 @@ RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  netbase
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  diffutils
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  ncurses-base ncurses-bin
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  startpar
-RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  tzdata
+#RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  tzdata
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  sed
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  lsb-base
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  login
@@ -51,10 +56,14 @@ RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libsemanage-common
 # Remove unncessary config/static files
 RUN rm -rf  /usr/share/bash-completion /lib/udev /usr/share/doc /usr/share/man /var/lib/systemd
 
+
+
 #Now properly install BusyBox and remove all binaries it replaces
 COPY busy-install.sh /tmp/busy-install.sh
 RUN chmod 755 /tmp/busy-install.sh
 RUN /tmp/busy-install.sh
+
+
 
 # Remove Cache and build files
 RUN apt-get clean
