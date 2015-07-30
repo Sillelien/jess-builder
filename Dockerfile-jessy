@@ -4,6 +4,11 @@ FROM debian:jessie
 # Systematically remove packages
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
 
+# Add S6 for process management
+RUN cd /tmp && wget  https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz
+RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
+
+
 COPY locale.nopurge /etc/locale.nopurge
 RUN apt-get install -y localepurge && dpkg-reconfigure localepurge && localepurge
 RUN apt-get install -y deborphan
@@ -52,9 +57,6 @@ RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  insserv
 # Add in Busybox to replace the main utils, more on that later
 RUN apt-get install -y busybox && apt-get autoremove -y
 
-# Add S6 for process management
-ADD https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz /tmp/
-RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 
 
 # SELinux config
