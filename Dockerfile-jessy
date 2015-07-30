@@ -81,8 +81,6 @@ RUN apt-get purge -y $(deborphan)
 RUN apt-get remove -y deborphan localepurge
 RUN apt-get clean
 RUN rm -rf /tmp/*
-RUN find /var/cache/apt/ -type f -exec rm -v {} \;
-RUN find /var/lib/apt/lists -type f -exec rm -v {} \;
 
 RUN apt list --installed
 
