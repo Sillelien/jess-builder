@@ -4,8 +4,11 @@ FROM debian:jessie
 # Systematically remove packages
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
 
+RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  systemd systemd-sysv sysv-rc sysvinit-utils
+
 # Add S6 for process management
-RUN cd /tmp && wget  https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz
+RUN apt-get install -y wget && cd /tmp && wget https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz && apt-get remove -y wget
+
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 
 
@@ -13,7 +16,6 @@ COPY locale.nopurge /etc/locale.nopurge
 RUN apt-get install -y localepurge && dpkg-reconfigure localepurge && localepurge
 RUN apt-get install -y deborphan
 
-RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  systemd systemd-sysv sysv-rc sysvinit-utils
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  bash
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  bsdutils
 #RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  passwd
@@ -63,7 +65,7 @@ RUN apt-get install -y busybox && apt-get autoremove -y
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libsemanage-common libsemanage1
 
 # Remove unncessary config/static files
-RUN rm -rf  /usr/share/bash-completion /lib/udev /usr/share/doc  /usr/share/doc-base/
+RUN rm -rf  /usr/share/bash-completion /lib/udev /usr/share/doc/*  /usr/share/doc-base/
 RUN dpkg --purge man-db manpages
 RUn rm -rf /usr/share/man
 
@@ -82,6 +84,7 @@ RUN rm -rf /tmp/*
 RUN find /var/cache/apt/ -type f -exec rm -v {} \;
 RUN find /var/lib/apt/lists -type f -exec rm -v {} \;
 
+RUN apt list --installed
 
 # Scores on the doors please
 RUN du -sh / || :
