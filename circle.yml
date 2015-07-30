@@ -14,9 +14,10 @@ dependencies:
 
 test:
   override:
-    - "cont=$(docker run -d sillelien/jessy:${CIRCLE_BRANCH} 'sleep 10'); sleep 2 ; docker logs $cont; docker export $cont | docker import - sillelien/jessy:${CIRCLE_BRANCH}"
-    - "cont=$(docker run -d sillelien/jess:${CIRCLE_BRANCH} 'sleep 10'); sleep 5 ; docker logs $cont; docker export $cont | docker import - sillelien/jess:${CIRCLE_BRANCH}"
-
+    - "cont=$(docker run -d sillelien/jessy:${CIRCLE_BRANCH} 'sleep 10'); sleep 2 ; docker logs $cont; docker export $cont | docker import - sillelien/jessy-raw"
+    - "cont=$(docker run -d sillelien/jess:${CIRCLE_BRANCH} 'sleep 10'); sleep 5 ; docker logs $cont; docker export $cont | docker import - sillelien/jess-raw"
+    - docker build -f Dockerfile-jessy-final -t sillelien/jessy:${CIRCLE_BRANCH} .
+    - docker build -f Dockerfile-jess-final -t sillelien/jess:${CIRCLE_BRANCH} .
     - "cont=$(docker run -d sillelien/jez:${CIRCLE_BRANCH} 'sleep 10'); sleep 5 ; docker logs $cont; docker export $cont | docker import - sillelien/jez:${CIRCLE_BRANCH}"
 
 deployment:

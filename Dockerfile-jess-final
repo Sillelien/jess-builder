@@ -1,0 +1,3 @@
+FROM sillelien/jess-raw
+ENTRYPOINT [ "/init" ]
+CMD ["/bin/sh"]
