@@ -59,7 +59,7 @@ RUN cd /tmp &&  tar xzf "jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" &&
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  systemd systemd-sysv sysv-rc sysvinit-utils
 
 # Add S6 for process management
-RUN apt-get install -y wget && cd /tmp && wget https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz
+RUN apt-get install -y curl && cd /tmp && curl -L https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz > /tmp/s6-overlay-amd64.tar.gz
 
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 
@@ -91,7 +91,7 @@ RUN /tmp/busy-install.sh
 
 #RUN apt-get remove -y tzdata
 
-RUN apt-get remove -y wget
+RUN apt-get remove -y wget curl
 
 # Remove Cache and build files
 RUN apt-get purge -y $(deborphan)
