@@ -1,3 +1,3 @@
 FROM sillelien/jess-raw
-ENTRYPOINT [ "/init" ]
+ENTRYPOINT [ "/init"]
 CMD ["/bin/sh"]

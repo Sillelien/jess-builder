@@ -5,12 +5,13 @@ RUN apt list --installed
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  gnupg libreadline6 readline-common gpgv  libusb-0.1-4 libtinfo5 debian-archive-keyring libdebconfclient0 liblocale-gettext-perl libapt-pkg4.12 dash tzdata findutils debianutils coreutils gnupg gpgv acl insserv || :
 
 RUN rm -rf  /var/lib/dpkg  /var/lib/apt/lists
-RUN rm -rf  /var/cache/* /usr/sbin/* /bin/systemd/* /var/lib/systemd
-RUN rm -rf  /usr/share/bash-completion /sbin/* /usr/bin/*
+RUN rm -rf  /var/cache/*  /bin/systemd/* /var/lib/systemd
+RUN rm -rf  /usr/share/bash-completion
 RUN cd /usr/lib/x86_64-linux-gnu && rm -rf gconv perl
 RUN du -sh /usr/lib/x86_64-linux-gnu/*
 RUN du -sh  /lib/x86_64-linux-gnu/*
 
+#RUN rm -rf /sbin/* /usr/bin/* /usr/sbin/*
 RUN sh -c echo hello
 
 # Scores on the doors
