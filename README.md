@@ -1,5 +1,7 @@
 # jess-builder
 
+**If you use this image please consider giving it a star on [Github](https://github.com/Sillelien/jess-builder)**
+
 Stripped down Debian Jessie for Docker creator, this creates images that are derivative of Debian Jessie but have been changed to shrink the size, including the addition of BusyBox. Jessy especially is intended as a fully functional Debian style Docker Image.
 
 ## Jessy
