@@ -63,7 +63,6 @@ RUN apt-get install -y curl && cd /tmp && curl -L https://github.com/just-contai
 
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 
-COPY locale.nopurge /etc/locale.nopurge
 RUN apt-get install -y localepurge && dpkg-reconfigure localepurge && localepurge
 RUN apt-get install -y deborphan
 
