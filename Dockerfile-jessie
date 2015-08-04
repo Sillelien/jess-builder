@@ -1,0 +1,37 @@
+FROM debian:jessie
+
+# Systematically remove packages
+RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
+
+#RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  systemd systemd-sysv sysv-rc sysvinit-utils
+
+# Add S6 for process management
+RUN apt-get install -y curl && cd /tmp && curl -L  https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz > /tmp/s6-overlay-amd64.tar.gz && apt-get remove -y curl
+
+RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
+
+COPY locale.nopurge /etc/locale.nopurge
+RUN apt-get install -y localepurge && dpkg-reconfigure localepurge && localepurge
+RUN apt-get install -y deborphan
+
+
+
+# Remove unncessary config/static files
+RUN rm -rf  /usr/share/doc/*  /usr/share/doc-base/
+RUN dpkg --purge man-db manpages
+RUN rm -rf /usr/share/man
+
+# Remove Cache and build files
+RUN apt-get purge -y $(deborphan)
+RUN apt-get remove -y deborphan localepurge
+RUN apt-get clean
+RUN rm -rf /tmp/*
+
+#Overlay
+COPY overlay /
+
+RUN apt list --installed
+
+# Scores on the doors please
+RUN du -sh / || :
+

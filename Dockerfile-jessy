@@ -31,7 +31,7 @@ RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  udev
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  mount
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  grep
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  dmsetup
-RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  base-passwd
+#RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  base-passwd
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  util-linux
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libtext-charwidth-perl libtext-iconv-perl libtext-wrapi18n-perl libuuid-perl
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libcryptsetup4
@@ -57,12 +57,14 @@ RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  insserv
 
 
 # Add in Busybox to replace the main utils, more on that later
-RUN apt-get install -y busybox && apt-get autoremove -y
+RUN apt-get install -y busybox dnsmasq && apt-get autoremove -y
 
 
 
 # SELinux config
 RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libsemanage-common libsemanage1
+
+
 
 # Remove unncessary config/static files
 RUN rm -rf  /usr/share/bash-completion /lib/udev /usr/share/doc/*  /usr/share/doc-base/
@@ -81,6 +83,9 @@ RUN apt-get purge -y $(deborphan)
 RUN apt-get remove -y deborphan localepurge
 RUN apt-get clean
 RUN rm -rf /tmp/*
+
+#Overlay
+COPY overlay /
 
 RUN apt list --installed
 
