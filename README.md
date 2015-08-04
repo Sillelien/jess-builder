@@ -44,7 +44,7 @@ Experimental do not touch.
 
 ## Badges
 
-[![Circle CI](https://circleci.com/gh/Sillelien/jess-builder/tree/master.svg?style=svg)](https://circleci.com/gh/Sillelien/jess-builder/tree/master)
+[![Circle CI](https://circleci.com/gh/sillelien/jess-builder/tree/master.svg?style=svg)](https://circleci.com/gh/sillelien/jess-builder/tree/master)
 
 [![GitHub License](https://img.shields.io/github/license/sillelien/jess-builder.svg)](https://raw.githubusercontent.com/sillelien/jess-builder/master/LICENSE)
 
