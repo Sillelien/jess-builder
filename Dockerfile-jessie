@@ -6,14 +6,15 @@ RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
 #RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  systemd systemd-sysv sysv-rc sysvinit-utils
 
 # Add S6 for process management
-RUN apt-get install -y curl && cd /tmp && curl -L  https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz > /tmp/s6-overlay-amd64.tar.gz && apt-get remove -y curl
+RUN apt-get install -y curl  && cd /tmp && curl -L  https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz > /tmp/s6-overlay-amd64.tar.gz && apt-get remove -y curl
 
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 
 COPY locale.nopurge /etc/locale.nopurge
 RUN apt-get install -y localepurge && dpkg-reconfigure localepurge && localepurge
-RUN apt-get install -y deborphan
+RUN apt-get install -y deborphan 
 
+RUN apt-get install -y deborphan dnsmasq
 
 
 # Remove unncessary config/static files
