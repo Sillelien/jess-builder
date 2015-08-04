@@ -59,12 +59,11 @@ deployment:
       - docker push sillelien/jessy:$(cat .release)
       - docker push sillelien/jessyj:$(cat .release)
       - docker push sillelien/jess:$(cat .release)
-      - docker push sillelien/jez:$(cat .release)
       - docker push sillelien/jessie
       - docker push sillelien/jessy
       - docker push sillelien/jessyj
       - docker push sillelien/jess
-      - docker push sillelien/jez
+      - docker push sillelien/jez:${CIRCLE_BRANCH}
 
 
 
