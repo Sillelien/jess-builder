@@ -1,5 +1,7 @@
 # jess-builder
 
+**If you use this image please consider giving it a star on [Github](https://github.com/Sillelien/jess-builder)**
+
 Stripped down Debian Jessie for Docker creator, this creates images that are derivative of Debian Jessie but have been changed to shrink the size, including the addition of BusyBox. Jessy especially is intended as a fully functional Debian style Docker Image.
 
 ## Jessy
@@ -42,7 +44,7 @@ Experimental do not touch.
 
 ## Badges
 
-[![Circle CI](https://circleci.com/gh/Sillelien/jess-builder/tree/master.svg?style=svg)](https://circleci.com/gh/Sillelien/jess-builder/tree/master)
+[![Circle CI](https://circleci.com/gh/sillelien/jess-builder/tree/master.svg?style=svg)](https://circleci.com/gh/sillelien/jess-builder/tree/master)
 
 [![GitHub License](https://img.shields.io/github/license/sillelien/jess-builder.svg)](https://raw.githubusercontent.com/sillelien/jess-builder/master/LICENSE)
 
