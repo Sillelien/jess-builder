@@ -40,11 +40,10 @@ deployment:
         - git checkout master
         - git pull
         - git merge staging -m "Auto merge"
-        - git push
         - echo ${release} > .release
         - envsubst < README.md > README.expanded
         - mv README.expanded README.md
-        - 'git commit -a -m "Promotion from staging" || :'
+        - 'git commit -a -m "Release ${release}" || :'
         - "git tag ${release} || :"
         - git push --tags
         - git push origin master
