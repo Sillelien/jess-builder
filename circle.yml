@@ -1,6 +1,8 @@
 machine:
   services:
     - docker
+  environment:
+    release: 0.4.${CIRCLE_BUILD_NUM}
 
 dependencies:
   cache_directories:
@@ -27,10 +29,49 @@ test:
     - "cont=$(docker run -d sillelien/jez:${CIRCLE_BRANCH} 'sleep 10'); sleep 5 ; docker logs $cont; docker export $cont | docker import - sillelien/jez:${CIRCLE_BRANCH}"
 
 deployment:
-  all:
-    branch: /.*/
-    commands:
-      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS 
+
+  staging:
+      branch: staging
+      commands:
+        - git config --global user.email "hello@neilellis.me"
+        - git config --global user.name "Neil Ellis"
+        - git reset HEAD --hard
+        - git clean -fd
+        - git checkout master
+        - git pull
+        - git merge staging -m "Auto merge"
+        - git push
+        - echo ${release} > .release
+        - envsubst < README.md > README.expanded
+        - mv README.expanded README.md
+        - 'git commit -a -m "Promotion from staging" || :'
+        - "git tag ${release} || :"
+        - git push --tags
+        - git push origin master
+
+  production:
+      branch: master
+      commands:
+      - docker build -f Dockerfile-jessie-final -t sillelien/jessie::$(cat .release) .
+      - docker build -f Dockerfile-jessy-final -t sillelien/jessy:$(cat .release) .
+      - docker build -f Dockerfile-jessyj-final -t sillelien/jessyj:$(cat .release) .
+      - docker build -f Dockerfile-jess-final -t sillelien/jess:$(cat .release) .
+      - docker push sillelien/jessie:$(cat .release)
+      - docker push sillelien/jessy:$(cat .release)
+      - docker push sillelien/jessyj:$(cat .release)
+      - docker push sillelien/jess:$(cat .release)
+      - docker push sillelien/jez:$(cat .release)
+      - docker push sillelien/jessie
+      - docker push sillelien/jessy
+      - docker push sillelien/jessyj
+      - docker push sillelien/jess
+      - docker push sillelien/jez
+
+
+
+  development:
+      branch: dev
+      commands:
       - docker push sillelien/jessie:${CIRCLE_BRANCH}
       - docker push sillelien/jessy:${CIRCLE_BRANCH}
       - docker push sillelien/jessyj:${CIRCLE_BRANCH}
