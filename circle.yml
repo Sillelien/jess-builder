@@ -42,29 +42,27 @@ deployment:
   production:
       branch: master
       commands:
-        - docker build -f Dockerfile-jessie-final -t sillelien/jessie:$(cat .release) .
-        - docker build -f Dockerfile-jessiej-final -t sillelien/jessie:$(cat .release) .
-        - docker build -f Dockerfile-jessy-final -t sillelien/jessy:$(cat .release) .
-        - docker build -f Dockerfile-jessyj-final -t sillelien/jessyj:$(cat .release) .
-        - docker build -f Dockerfile-jess-final -t sillelien/jess:$(cat .release) .
-        - docker build -f Dockerfile-jessie-final -t sillelien/jessie: .
-        - docker build -f Dockerfile-jessiej-final -t sillelien/jessie .
-        - docker build -f Dockerfile-jessy-final -t sillelien/jessy .
-        - docker build -f Dockerfile-jessyj-final -t sillelien/jessyj .
-        - docker build -f Dockerfile-jess-final -t sillelien/jess .
-        - docker push sillelien/jessie:$(cat .release)
-        - docker push sillelien/jessiej:$(cat .release)
-        - docker push sillelien/jessy:$(cat .release)
-        - docker push sillelien/jessyj:$(cat .release)
-        - docker push sillelien/jess:$(cat .release)
-        - docker push sillelien/jessie
-        - docker push sillelien/jessiej
-        - docker push sillelien/jessy
-        - docker push sillelien/jessyj
-        - docker push sillelien/jess
-        - docker push sillelien/jez:${CIRCLE_BRANCH}
-
-
+          - docker build -f Dockerfile-jessie-final -t sillelien/jessie:$(cat .release) .
+          - docker build -f Dockerfile-jessiej-final -t sillelien/jessie:$(cat .release) .
+          - docker build -f Dockerfile-jessy-final -t sillelien/jessy:$(cat .release) .
+          - docker build -f Dockerfile-jessyj-final -t sillelien/jessyj:$(cat .release) .
+          - docker build -f Dockerfile-jess-final -t sillelien/jess:$(cat .release) .
+          - docker build -f Dockerfile-jessie-final -t sillelien/jessie: .
+          - docker build -f Dockerfile-jessiej-final -t sillelien/jessie .
+          - docker build -f Dockerfile-jessy-final -t sillelien/jessy .
+          - docker build -f Dockerfile-jessyj-final -t sillelien/jessyj .
+          - docker build -f Dockerfile-jess-final -t sillelien/jess .
+          - docker push sillelien/jessie:$(cat .release)
+          - docker push sillelien/jessiej:$(cat .release)
+          - docker push sillelien/jessy:$(cat .release)
+          - docker push sillelien/jessyj:$(cat .release)
+          - docker push sillelien/jess:$(cat .release)
+          - docker push sillelien/jessie
+          - docker push sillelien/jessiej
+          - docker push sillelien/jessy
+          - docker push sillelien/jessyj
+          - docker push sillelien/jess
+          - docker push sillelien/jez:${CIRCLE_BRANCH}
 
   development:
       branch: dev
