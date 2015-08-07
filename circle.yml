@@ -47,7 +47,7 @@ deployment:
           - docker build -f Dockerfile-jessy-final -t sillelien/jessy:$(cat .release) .
           - docker build -f Dockerfile-jessyj-final -t sillelien/jessyj:$(cat .release) .
           - docker build -f Dockerfile-jess-final -t sillelien/jess:$(cat .release) .
-          - docker build -f Dockerfile-jessie-final -t sillelien/jessie: .
+          - docker build -f Dockerfile-jessie-final -t sillelien/jessie .
           - docker build -f Dockerfile-jessiej-final -t sillelien/jessie .
           - docker build -f Dockerfile-jessy-final -t sillelien/jessy .
           - docker build -f Dockerfile-jessyj-final -t sillelien/jessyj .
