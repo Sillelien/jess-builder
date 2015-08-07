@@ -2,15 +2,17 @@ machine:
   services:
     - docker
   environment:
-    release: 0.4.${CIRCLE_BUILD_NUM}
+    RELEASE: 0.4.${CIRCLE_BUILD_NUM}
 
 dependencies:
   cache_directories:
     - "~/docker"
 
   override:
+      - cd ~ && git clone https://github.com/sillelien/build-utils.git && chmod a+x ~/build-utils/*.sh
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS 
       - docker build -f Dockerfile-jessie -t sillelien/jessie:${CIRCLE_BRANCH} .
+      - docker build -f Dockerfile-jessiej -t sillelien/jessiej:${CIRCLE_BRANCH} .
       - docker build -f Dockerfile-jessy -t sillelien/jessy:${CIRCLE_BRANCH} .
       - docker build -f Dockerfile-jessyj -t sillelien/jessyj:${CIRCLE_BRANCH} .
       - docker build -f Dockerfile-jess -t sillelien/jess:${CIRCLE_BRANCH} .
@@ -19,10 +21,12 @@ dependencies:
 test:
   override:
     - "cont=$(docker run -d sillelien/jessie:${CIRCLE_BRANCH} 'sleep 10'); sleep 2 ; docker logs $cont; docker export $cont | docker import - sillelien/jessie-raw"
+    - "cont=$(docker run -d sillelien/jessiej:${CIRCLE_BRANCH} 'sleep 10'); sleep 2 ; docker logs $cont; docker export $cont | docker import - sillelien/jessiej-raw"
     - "cont=$(docker run -d sillelien/jessy:${CIRCLE_BRANCH} 'sleep 10'); sleep 2 ; docker logs $cont; docker export $cont | docker import - sillelien/jessy-raw"
     - "cont=$(docker run -d sillelien/jessyj:${CIRCLE_BRANCH} 'sleep 10'); sleep 2 ; docker logs $cont; docker export $cont | docker import - sillelien/jessyj-raw"
     - "cont=$(docker run -d sillelien/jess:${CIRCLE_BRANCH} 'sleep 10'); sleep 5 ; docker logs $cont; docker export $cont | docker import - sillelien/jess-raw"
     - docker build -f Dockerfile-jessie-final -t sillelien/jessie:${CIRCLE_BRANCH} .
+    - docker build -f Dockerfile-jessiej-final -t sillelien/jessie:${CIRCLE_BRANCH} .
     - docker build -f Dockerfile-jessy-final -t sillelien/jessy:${CIRCLE_BRANCH} .
     - docker build -f Dockerfile-jessyj-final -t sillelien/jessyj:${CIRCLE_BRANCH} .
     - docker build -f Dockerfile-jess-final -t sillelien/jess:${CIRCLE_BRANCH} .
@@ -33,45 +37,39 @@ deployment:
   staging:
       branch: staging
       commands:
-        - git config --global user.email "hello@neilellis.me"
-        - git config --global user.name "Neil Ellis"
-        - git reset HEAD --hard
-        - git clean -fd
-        - git checkout master
-        - git pull
-        - git merge staging -m "Auto merge"
-        - echo ${release} > .release
-        - envsubst < README.md > README.expanded
-        - mv README.expanded README.md
-        - 'git commit -a -m "Release ${release}" || :'
-        - "git tag ${release} || :"
-        - git push --tags
-        - git push origin master
+         - ~/build-utils/promote_from_staging.sh
 
   production:
       branch: master
       commands:
-      - docker build -f Dockerfile-jessie-final -t sillelien/jessie:$(cat .release) .
-      - docker build -f Dockerfile-jessy-final -t sillelien/jessy:$(cat .release) .
-      - docker build -f Dockerfile-jessyj-final -t sillelien/jessyj:$(cat .release) .
-      - docker build -f Dockerfile-jess-final -t sillelien/jess:$(cat .release) .
-      - docker push sillelien/jessie:$(cat .release)
-      - docker push sillelien/jessy:$(cat .release)
-      - docker push sillelien/jessyj:$(cat .release)
-      - docker push sillelien/jess:$(cat .release)
-      - docker push sillelien/jessie
-      - docker push sillelien/jessy
-      - docker push sillelien/jessyj
-      - docker push sillelien/jess
-      - docker push sillelien/jez:${CIRCLE_BRANCH}
-
-
+          - docker build -f Dockerfile-jessie-final -t sillelien/jessie:$(cat .release) .
+          - docker build -f Dockerfile-jessiej-final -t sillelien/jessie:$(cat .release) .
+          - docker build -f Dockerfile-jessy-final -t sillelien/jessy:$(cat .release) .
+          - docker build -f Dockerfile-jessyj-final -t sillelien/jessyj:$(cat .release) .
+          - docker build -f Dockerfile-jess-final -t sillelien/jess:$(cat .release) .
+          - docker build -f Dockerfile-jessie-final -t sillelien/jessie .
+          - docker build -f Dockerfile-jessiej-final -t sillelien/jessie .
+          - docker build -f Dockerfile-jessy-final -t sillelien/jessy .
+          - docker build -f Dockerfile-jessyj-final -t sillelien/jessyj .
+          - docker build -f Dockerfile-jess-final -t sillelien/jess .
+          - docker push sillelien/jessie:$(cat .release)
+          - docker push sillelien/jessiej:$(cat .release)
+          - docker push sillelien/jessy:$(cat .release)
+          - docker push sillelien/jessyj:$(cat .release)
+          - docker push sillelien/jess:$(cat .release)
+          - docker push sillelien/jessie
+          - docker push sillelien/jessiej
+          - docker push sillelien/jessy
+          - docker push sillelien/jessyj
+          - docker push sillelien/jess
+          - docker push sillelien/jez:${CIRCLE_BRANCH}
 
   development:
       branch: dev
       commands:
-      - docker push sillelien/jessie:${CIRCLE_BRANCH}
-      - docker push sillelien/jessy:${CIRCLE_BRANCH}
-      - docker push sillelien/jessyj:${CIRCLE_BRANCH}
-      - docker push sillelien/jess:${CIRCLE_BRANCH}
-      - docker push sillelien/jez:${CIRCLE_BRANCH}
+        - docker push sillelien/jessie:${CIRCLE_BRANCH}
+        - docker push sillelien/jessiej:${CIRCLE_BRANCH}
+        - docker push sillelien/jessy:${CIRCLE_BRANCH}
+        - docker push sillelien/jessyj:${CIRCLE_BRANCH}
+        - docker push sillelien/jess:${CIRCLE_BRANCH}
+        - docker push sillelien/jez:${CIRCLE_BRANCH}
