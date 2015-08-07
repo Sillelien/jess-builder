@@ -1,12 +1,16 @@
 FROM debian:jessie
 
-ENV JAVA_VERSION=8 \
-    JAVA_UPDATE=45 \
-    JAVA_BUILD=14 \
-    JAVA_HOME=/usr/lib/jvm/default-jvm \
-    PATH=${PATH}:${JAVA_HOME}/bin
-
+# Systematically remove packages
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
+
+#RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  systemd systemd-sysv sysv-rc sysvinit-utils
+
+# Add S6 for process management
+RUN apt-get install -y curl  && cd /tmp && curl -L  https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz > /tmp/s6-overlay-amd64.tar.gz && apt-get remove -y curl
+
+RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
+
+
 RUN apt-get install -y wget
 RUN cd /tmp && \
     wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
@@ -52,44 +56,16 @@ RUN cd /tmp &&  tar xzf "jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" &&
            $JAVA_HOME/jre/lib/oblique-fonts
 
 
-# Systematically remove packages
-
-
-RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  systemd systemd-sysv sysv-rc sysvinit-utils
-
-# Add S6 for process management
-RUN apt-get install -y curl && cd /tmp && curl -L https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz > /tmp/s6-overlay-amd64.tar.gz
-
-RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
-
 RUN apt-get install -y localepurge && dpkg-reconfigure localepurge && localepurge
 RUN apt-get install -y deborphan
 
-#RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  passwd
+RUN apt-get install -y dnsmasq
 
-
-RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes bash bsdutils netbase diffutils ncurses-base ncurses-bin startpar sed lsb-base login gzip udev mount grep dmsetup base-passwd util-linux libtext-charwidth-perl libtext-iconv-perl libtext-wrapi18n-perl libuuid-perl libcryptsetup4 libdevmapper1.02.1 libsystemd0 libgcrypt20 libcomerr2 iproute2 libsmartcols1 libslang2 libkmod2 libmount1 libblkid1 libprocps3 libudev1 e2fslibs e2fsprogs libncurses5 libncursesw5 libss2 libcap2-bin libgpg-error0 insserv
-
-
-# Add in Busybox to replace the main utils, more on that later
-RUN apt-get install -y busybox && apt-get autoremove -y
-
-# SELinux config
-RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  libsemanage-common libsemanage1
 
 # Remove unncessary config/static files
-RUN rm -rf  /usr/share/bash-completion /lib/udev /usr/share/doc/*  /usr/share/doc-base/
 RUN dpkg --purge man-db manpages
+RUN rm -rf  /usr/share/doc/*  /usr/share/doc-base/
 RUN rm -rf /usr/share/man
-
-#Now properly install BusyBox and remove all binaries it replaces
-COPY busy-install.sh /tmp/busy-install.sh
-RUN chmod 755 /tmp/busy-install.sh
-RUN /tmp/busy-install.sh
-
-#RUN apt-get remove -y tzdata
-
-RUN apt-get remove -y wget curl
 
 # Remove Cache and build files
 RUN apt-get purge -y $(deborphan)
@@ -97,15 +73,13 @@ RUN apt-get remove -y deborphan localepurge
 RUN apt-get clean
 RUN rm -rf /tmp/*
 
-
 #Overlay
 COPY overlay /
+
 RUN find /etc -name "*.sh" -exec chmod a+x {} \;
 
 RUN apt list --installed
 
-RUN java -version
-
 # Scores on the doors please
-RUN du -sh /usr/lib/jvm/java-8-oracle/jre/lib/* || :
+RUN du -sh / || :
 
