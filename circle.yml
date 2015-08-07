@@ -2,13 +2,14 @@ machine:
   services:
     - docker
   environment:
-    release: 0.4.${CIRCLE_BUILD_NUM}
+    RELEASE: 0.4.${CIRCLE_BUILD_NUM}
 
 dependencies:
   cache_directories:
     - "~/docker"
 
   override:
+      - cd ~ && git clone https://github.com/sillelien/build-utils.git && chmod a+x ~/build-utils/*.sh
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS 
       - docker build -f Dockerfile-jessie -t sillelien/jessie:${CIRCLE_BRANCH} .
       - docker build -f Dockerfile-jessiej -t sillelien/jessiej:${CIRCLE_BRANCH} .
@@ -36,20 +37,7 @@ deployment:
   staging:
       branch: staging
       commands:
-        - git config --global user.email "hello@neilellis.me"
-        - git config --global user.name "Neil Ellis"
-        - git reset HEAD --hard
-        - git clean -fd
-        - git checkout master
-        - git pull
-        - git merge staging -m "Auto merge"
-        - echo ${release} > .release
-        - envsubst < README.md > README.expanded
-        - mv README.expanded README.md
-        - 'git commit -a -m "Release ${release}" || :'
-        - "git tag ${release} || :"
-        - git push --tags
-        - git push origin master
+         - ~/build-utils/promote_from_staging.sh
 
   production:
       branch: master
