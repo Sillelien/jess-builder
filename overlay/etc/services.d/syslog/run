@@ -1,2 +1,2 @@
-#!/usr/bin/env sh
+#!/usr/bin/with-contenv sh
 exec syslogd -n -D -O /dev/stdout

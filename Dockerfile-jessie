@@ -30,6 +30,8 @@ RUN rm -rf /tmp/*
 #Overlay
 COPY overlay /
 
+RUN find /etc -name "*.sh" -exec chmod a+x {} \;
+
 RUN apt list --installed
 
 # Scores on the doors please
