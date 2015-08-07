@@ -10,7 +10,7 @@ Jessy is a working container with a shell and everything based on Debian but wit
 Always use a tagged version such as:
 
 ```
-FROM sillelien/jessy:${RELEASE}
+FROM sillelien/jessy:0.4.118
 ```
 
 Jessy: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jessy.svg)](https://registry.hub.docker.com/u/sillelien/jessy)
