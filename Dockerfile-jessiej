@@ -64,7 +64,7 @@ RUN cd /tmp &&  tar xzf "jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" &&
 RUN apt-get install -y localepurge && dpkg-reconfigure localepurge && localepurge
 RUN apt-get install -y deborphan
 
-RUN apt-get install -y dnsmasq
+RUN apt-get install -y dnsmasq inetutils-syslogd
 
 
 # Remove unncessary config/static files
