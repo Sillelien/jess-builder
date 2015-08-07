@@ -98,6 +98,11 @@ RUN apt-get remove -y deborphan localepurge
 RUN apt-get clean
 RUN rm -rf /tmp/*
 
+
+#Overlay
+COPY overlay /
+RUN find /etc -name "*.sh" -exec chmod a+x {} \;
+
 RUN apt list --installed
 
 RUN java -version
