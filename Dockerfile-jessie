@@ -13,8 +13,7 @@ RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 RUN apt-get install -y localepurge && dpkg-reconfigure localepurge && localepurge
 RUN apt-get install -y deborphan
 
-RUN apt-get install -y dnsmasq
-
+RUN apt-get install -y dnsmasq inetutils-syslogd
 
 # Remove unncessary config/static files
 RUN dpkg --purge man-db manpages

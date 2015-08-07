@@ -63,7 +63,7 @@ RUN apt-get install -y curl && cd /tmp && curl -L https://github.com/just-contai
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 
 RUN apt-get install -y localepurge && dpkg-reconfigure localepurge && localepurge
-RUN apt-get install -y deborphan
+RUN apt-get install -y deborphan inetutils-syslogd dnsmasq
 
 #RUN echo "Yes, do as I say!" | apt-get -y remove --force-yes  passwd
 
