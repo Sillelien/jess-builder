@@ -1,10 +1,9 @@
-# jess-builder
-
-${BLURB}
+${HEADER}
+# jess-builder ${STATUS_PRE_ALPHA}
 
 Stripped down Debian Jessie for Docker creator, this creates images that are derivative of Debian Jessie but have been changed to shrink the size, including the addition of BusyBox. Jessy especially is intended as a fully functional Debian style Docker Image.
 
-We would welcome any feedback about these images, please raise issues on [GitHub](https://github.com/sillelien/jess-builder/issues) we'd love to hear from you.
+${BLURB}
 
 ## Jessie
 Jessie is an almost complete Debian Jessie install with a shell and everything based on Debian. It has however a set of additional features such as S6 process management and a DNS hack for systems with issues resolving links.
@@ -71,8 +70,4 @@ Experimental do not touch.
 
 [![Circle CI](https://circleci.com/gh/sillelien/jess-builder/tree/master.svg?style=svg)](https://circleci.com/gh/sillelien/jess-builder/tree/master)
 
-[![GitHub License](https://img.shields.io/github/license/sillelien/jess-builder.svg)](https://raw.githubusercontent.com/sillelien/jess-builder/master/LICENSE)
-
-[![GitHub Issues](https://img.shields.io/github/issues/sillelien/jess-builder.svg)](https://github.com/sillelien/jess-builder/issues)
-    
-[![GitHub Release](https://img.shields.io/github/release/sillelien/jess-builder.svg)](https://github.com/sillelien/jess-builder)
+${FOOTER}
