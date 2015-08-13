@@ -1,9 +1,19 @@
-${HEADER}
+
 # jess-builder ${STATUS_PRE_ALPHA}
 
 Stripped down Debian Jessie for Docker creator, this creates images that are derivative of Debian Jessie but have been changed to shrink the size, including the addition of BusyBox. Jessy especially is intended as a fully functional Debian style Docker Image.
 
-${BLURB}
+-------
+
+**If you use this project please consider giving us a star on [GitHub](http://github.com/sillelien/jess-builder). Also if you can spare 30 secs of your time please let us know your priorities here https://sillelien.wufoo.com/forms/zv51vc704q9ary/  - thanks, that really helps!**
+
+Please contact us through chat or through GitHub Issues.
+
+[![GitHub Issues](https://img.shields.io/github/issues/sillelien/jess-builder.svg)](https://github.com/sillelien/jess-builder/issues)
+
+[![Join the chat at https://gitter.im/sillelien/jess-builder](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sillelien/jess-builder?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+-------
 
 ## Jessie
 Jessie is an almost complete Debian Jessie install with a shell and everything based on Debian. It has however a set of additional features such as S6 process management and a DNS hack for systems with issues resolving links.
@@ -31,7 +41,7 @@ Jessy is a working container with a shell and everything based on Debian but wit
 Always use a tagged version such as:
 
 ```
-FROM sillelien/jessy:${RELEASE}
+FROM sillelien/jessy:0.4.140
 ```
 
 Jessy: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jessy.svg)](https://registry.hub.docker.com/u/sillelien/jessy)
@@ -56,7 +66,7 @@ Jess is a lot smaller and has had more removed. Don't use this for anything that
 Always use a tagged version such as:
 
 ```
-FROM sillelien/jess:${RELEASE}
+FROM sillelien/jess:0.4.140
 ```
 
 Jess: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jess.svg)](https://registry.hub.docker.com/u/sillelien/jess)
@@ -74,4 +84,8 @@ Experimental do not touch.
 
 [![Circle CI](https://circleci.com/gh/sillelien/jess-builder/tree/master.svg?style=svg)](https://circleci.com/gh/sillelien/jess-builder/tree/master)
 
-${FOOTER}
+--------
+
+[![GitHub License](https://img.shields.io/github/license/sillelien/jess-builder.svg)](https://raw.githubusercontent.com/sillelien/jess-builder/master/LICENSE)
+
+(c) 2015 Sillelien all rights reserved. Please see [LICENSE](https://raw.githubusercontent.com/sillelien/jess-builder/master/LICENSE) for license details of this project. Please visit http://sillelien.com for help and commercial support or raise issues on [GitHub](https://github.com/sillelien/jess-builder/issues).
