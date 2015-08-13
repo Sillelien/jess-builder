@@ -44,6 +44,10 @@ Debian Jessie: [![Image Layers](https://badge.imagelayers.io/library/debian:jess
 
 Is the same as Jessy but with a working Java runtime. Some parts of the runtime have been stripped out because they are only relevant on the desktop.
 
+JessyJ: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jessyj.svg)](https://registry.hub.docker.com/u/sillelien/jessyj)
+
+JessyJ: [![Image Layers](https://badge.imagelayers.io/sillelien/jessyj.svg)](https://imagelayers.io/?images=sillelien/jessyj:master 'Get your own badge on imagelayers.io') 
+
 
 ## Jess
 
@@ -52,7 +56,7 @@ Jess is a lot smaller and has had more removed. Don't use this for anything that
 Always use a tagged version such as:
 
 ```
-FROM sillelien/jess:0.4.123
+FROM sillelien/jess:0.4.127
 ```
 
 Jess: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jess.svg)](https://registry.hub.docker.com/u/sillelien/jess)
