@@ -31,7 +31,7 @@ Jessy is a working container with a shell and everything based on Debian but wit
 Always use a tagged version such as:
 
 ```
-FROM sillelien/jessy:0.4.123
+FROM sillelien/jessy:${RELEASE}
 ```
 
 Jessy: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jessy.svg)](https://registry.hub.docker.com/u/sillelien/jessy)
@@ -56,7 +56,7 @@ Jess is a lot smaller and has had more removed. Don't use this for anything that
 Always use a tagged version such as:
 
 ```
-FROM sillelien/jess:0.4.127
+FROM sillelien/jess:${RELEASE}
 ```
 
 Jess: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jess.svg)](https://registry.hub.docker.com/u/sillelien/jess)
