@@ -1,3 +1,3 @@
-FROM sillelien/jess-raw
+FROM sillelien/jessyj-raw
 ENTRYPOINT [ "/init"]
 CMD ["java","-version"]
