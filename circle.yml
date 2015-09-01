@@ -38,6 +38,11 @@ deployment:
       branch: staging
       commands:
          - ~/build-utils/promote_from_staging.sh
+         
+  release:
+    branch: /0.*/
+    commands:
+         - ~/build-utils/promote_from_staging.sh
 
   production:
       branch: master
