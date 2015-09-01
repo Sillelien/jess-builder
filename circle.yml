@@ -35,7 +35,12 @@ deployment:
   staging:
       branch: staging
       commands:
-         - ~/build-utils/promote_from_staging.sh
+        - docker push sillelien/jessie:${CIRCLE_BRANCH}
+        - docker push sillelien/jessiej:${CIRCLE_BRANCH}
+        - docker push sillelien/jessy:${CIRCLE_BRANCH}
+        - docker push sillelien/jessyj:${CIRCLE_BRANCH}
+        - docker push sillelien/jess:${CIRCLE_BRANCH}
+        - docker push sillelien/jez:${CIRCLE_BRANCH}
          
   release:
     branch: /0.*/
