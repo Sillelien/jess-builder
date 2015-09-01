@@ -1,8 +1,6 @@
 machine:
   services:
     - docker
-  environment:
-    RELEASE: 0.4.${CIRCLE_BUILD_NUM}
 
 dependencies:
   cache_directories:
