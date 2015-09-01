@@ -41,7 +41,7 @@ Jessy is a working container with a shell and everything based on Debian but wit
 Always use a tagged version such as:
 
 ```
-FROM sillelien/jessy:0.4.140
+FROM sillelien/jessy:0.4.146
 ```
 
 Jessy: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jessy.svg)](https://registry.hub.docker.com/u/sillelien/jessy)
@@ -66,7 +66,7 @@ Jess is a lot smaller and has had more removed. Don't use this for anything that
 Always use a tagged version such as:
 
 ```
-FROM sillelien/jess:0.4.140
+FROM sillelien/jess:0.4.146
 ```
 
 Jess: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jess.svg)](https://registry.hub.docker.com/u/sillelien/jess)
@@ -88,4 +88,20 @@ Experimental do not touch.
 
 [![GitHub License](https://img.shields.io/github/license/sillelien/jess-builder.svg)](https://raw.githubusercontent.com/sillelien/jess-builder/master/LICENSE)
 
+#Referral Links
+
+This is an open source project, which means that we are giving our time to you for free. However like yourselves, we do have bills to pay. Please consider visiting some of these excellent services, they are not junk we can assure you, all services we would or do use ourselves.
+
+[Really Excellent Dedicated Servers from Limestone Networks](http://www.limestonenetworks.com/?utm_campaign=rwreferrer&utm_medium=affiliate&utm_source=RFR16798) - fantastic service, great price.
+
+[Low Cost and High Quality Cloud Hosting from Digital Ocean](https://www.digitalocean.com/?refcode=7b4639fc8194) - truly awesome service.
+
+[Excellent Single Page Website Creation and Hosting from Strikingly](http://strk.ly/?uc=kDaE2vgzc3F) - http://sillelien.com uses this.
+
+#Copyright and License
+
 (c) 2015 Sillelien all rights reserved. Please see [LICENSE](https://raw.githubusercontent.com/sillelien/jess-builder/master/LICENSE) for license details of this project. Please visit http://sillelien.com for help and commercial support or raise issues on [GitHub](https://github.com/sillelien/jess-builder/issues).
+
+<div width="100%" align="right">
+<img src='https://da8lb468m8h1w.cloudfront.net/v2/cpanel/8398500-121258714_5-s1-v1.png?palette=1' >
+</div>
