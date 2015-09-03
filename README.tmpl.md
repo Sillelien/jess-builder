@@ -11,7 +11,7 @@ Jessie is an almost complete Debian Jessie install with a shell and everything b
 Please always use a tagged version such as:
 
 ```
-FROM sillelien/jessie:0.4.123
+FROM sillelien/jessie:${RELEASE}
 ```
 
 Jessie: [![Docker Registry](https://img.shields.io/docker/pulls/sillelien/jessie.svg)](https://registry.hub.docker.com/u/sillelien/jessie)
@@ -22,8 +22,7 @@ Debian Jessie: [![Image Layers](https://badge.imagelayers.io/library/debian:jess
 
 ## Jessiej ( [pun intended](https://en.wikipedia.org/wiki/Jessie_J) )
 
-Is the same as Jessie but with a working Java runtime. Some parts of the runtime have been stripped out because they are only relevant on the desktop.
-
+Is the same as Jessie but with a working Java runtime. Some parts of the Java runtime have been stripped out because they are only relevant on the desktop.
 
 ## Jessy
 Jessy is a working container with a shell and everything based on Debian but with BusyBox replacing core-utils, it has a lot of the shared libraries still installed as well as apt-get. Consider this a working compromise between Alpine/BusyBox and Debian.
